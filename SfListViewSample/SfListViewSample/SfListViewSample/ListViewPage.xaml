@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:SfListViewSample"
+             x:Class="SfListViewSample.ListViewPage">
+    <ContentPage.BindingContext>
+        <local:ViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <syncfusion:SfListView x:Name="listView"
+                               AutoFitMode="Height"
+                               SelectionMode="Single" 
+                               ItemsSource="{Binding ContactsInfo}">
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="White" Padding="1" HasShadow="{OnPlatform Android=true, iOS=false, UWP=true, WPF=true}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{OnPlatform Android={OnIdiom Phone=0.35*, Tablet=0.25*}, iOS={OnIdiom Phone=0.35*, Tablet=0.15*}, UWP={OnIdiom Desktop=auto, Phone=auto, Tablet=0.55*}, macOS=0.15*, WPF=auto}" />
+                                <ColumnDefinition Width="{OnPlatform Android={OnIdiom Phone=0.65*, Tablet=0.75*}, iOS={OnIdiom Phone=0.65*, Tablet=0.85*}, UWP={OnIdiom Desktop=*, Phone=*, Tablet=0.15*}, macOS=*, WPF=*}" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding ContactImage}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="150" WidthRequest="150" Aspect="AspectFill"/>
+
+                            <StackLayout Grid.Column="1" Padding="10,0,0,0">
+                                <StackLayout.VerticalOptions>
+                                    <OnPlatform x:TypeArguments="LayoutOptions">
+                                        <On Platform="macOS" Value="CenterAndExpand"/>
+                                    </OnPlatform>
+                                </StackLayout.VerticalOptions>
+                                <Label Text="{Binding ContactName}" LineBreakMode="WordWrap" FontAttributes="Bold"
+                                           FontSize="{OnPlatform Android={OnIdiom Phone=18, Tablet=22}, iOS={OnIdiom Phone=18, Tablet=22}, UWP={OnIdiom Phone=16, Tablet=26, Desktop=26}, macOS=22, WPF=26}" />
+                                <Label Grid.Row="1" LineBreakMode="WordWrap" Text="{Binding ContactNumber}"
+                                           FontSize="{OnPlatform Android={OnIdiom Phone=11, Tablet=13}, iOS={OnIdiom Phone=11, Tablet=13}, UWP={OnIdiom Phone=10, Tablet=14, Desktop=16}, macOS=13, WPF=16}" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+        </syncfusion:SfListView>
+    </ContentPage.Content>
+</ContentPage>

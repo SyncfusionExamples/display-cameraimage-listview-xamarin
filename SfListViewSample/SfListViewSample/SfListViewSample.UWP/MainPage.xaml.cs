@@ -22,6 +22,7 @@ namespace SfListViewSample.UWP
         {
             this.InitializeComponent();
             SfListViewRenderer.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             LoadApplication(new global::SfListViewSample.App());
         }
     }

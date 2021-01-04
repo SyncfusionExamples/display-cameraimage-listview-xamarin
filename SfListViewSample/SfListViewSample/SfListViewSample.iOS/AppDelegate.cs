@@ -25,6 +25,7 @@ namespace SfListViewSample.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             SfListViewRenderer.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

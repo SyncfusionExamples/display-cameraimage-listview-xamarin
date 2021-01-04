@@ -18,74 +18,63 @@ namespace SfListViewSample
         #region Fields
 
         private Random random = new Random();
-
-        #endregion
-
-        #region Constructor
-
-        public ViewModel()
-        {
-            GenerateContactDetails(80);
-        }
-
-        #endregion
-
+        private int count = 0;
         private ObservableCollection<ListViewContactsInfo> customerDetails;
 
+        #endregion
+
+        #region Properties
         public ObservableCollection<ListViewContactsInfo> ContactsInfo
         {
             get { return customerDetails; }
             set { this.customerDetails = value; }
         }
 
+        public Command<object> TakePhotoCommand { get; set; }
+        #endregion
 
-        #region Get Contacts Details
+        #region Constructor
 
-        public async void GenerateContactDetails(int count)
+        public ViewModel()
         {
-            customerDetails = new ObservableCollection<ListViewContactsInfo>();
-            ListViewContactsInfo details;
-            for (int i = 0; i < 3; i++)
-            {
-                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-                {
-                    Directory = "Media\\Pictures",
-                    Name = "Image"+i,
-                    SaveToAlbum = false,
-                    CompressionQuality = 75,
-                    CustomPhotoSize = 50,
-                    MaxWidthHeight = 2000,
-                });
-                details = new ListViewContactsInfo()
-                {
-                    ContactType = contactType[random.Next(0, 5)],
-                    ContactNumber = random.Next(100, 400).ToString() + "-" + random.Next(500, 800).ToString() + "-" + random.Next(1000, 2000).ToString(),
-                    ContactName = CustomerNames[0],
-                    ContactImage = ImageSource.FromStream(() =>
-                    {
-                        if (file == null)
-                            return null;
-                        var stream = file.GetStream();
-                        file.Dispose();
-                        return stream;
-                    })
-            };
-                customerDetails.Add(details);
-            }
+            ContactsInfo = new ObservableCollection<ListViewContactsInfo>();
+            TakePhotoCommand = new Command<object>(OnTakePhotoClicked);
         }
+        #endregion
 
+        #region Methods
+        private async void OnTakePhotoClicked(object obj)
+        {
+            count += 1;
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Media\\Pictures",
+                Name = "Image" + count,
+                SaveToAlbum = false,
+                CompressionQuality = 75,
+                CustomPhotoSize = 50,
+                MaxWidthHeight = 2000,
+            });
+            var details = new ListViewContactsInfo()
+            {
+                ContactNumber = random.Next(100, 400).ToString() + "-" + random.Next(500, 800).ToString() + "-" + random.Next(1000, 2000).ToString(),
+                ContactName = CustomerNames[count],
+            };
+
+            if (file == null)
+                return;
+
+            details.ContactImage = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
+
+            ContactsInfo.Add(details);
+        }
         #endregion
 
         #region Contacts Information
-
-        string[] contactType = new string[]
-        {
-            "HOME",
-            "WORK",
-            "MOBILE",
-            "OTHER",
-            "BUSINESS"
-        };
 
         string[] CustomerNames = new string[]
         {

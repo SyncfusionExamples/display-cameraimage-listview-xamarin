@@ -8,7 +8,6 @@ using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
 using Plugin.Permissions;
-using Plugin.CurrentActivity;
 
 namespace SfListViewSample.Droid
 {
@@ -18,14 +17,17 @@ namespace SfListViewSample.Droid
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            CrossCurrentActivity.Current.Init(this, bundle);
+         
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            Xamarin.Essentials.Platform.Init(this, bundle);
             LoadApplication(new App());
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

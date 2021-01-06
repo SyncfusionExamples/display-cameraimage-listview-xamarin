@@ -34,11 +34,13 @@
 	<string>SfListViewSample</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Allows the developer to describe why the app wants to access the device&apos;s camera.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This app needs access to the photo gallery.&lt;/string&gt;</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>his app needs access to photos.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>This app needs access to the camera to take photos.</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>This app needs access to photos.</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>This app needs access to the photo gallery.</string>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

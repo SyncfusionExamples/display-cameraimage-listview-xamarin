@@ -5,12 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.4.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.4.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.49" />
-    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.344457" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.4.0.32" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="18.4.0.32" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="18.4.0.32" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.4.0.32" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
   </ItemGroup>
 
   <ItemGroup>
